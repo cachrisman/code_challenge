@@ -19,6 +19,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'rails-assets-tether'
 gem 'pg'
 group :development do
   gem 'better_errors'
@@ -31,3 +32,4 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rubocop'
 end
+gem 'bcrypt', '~> 3.1.7'

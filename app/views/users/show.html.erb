@@ -1,0 +1,47 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Receive marketing:</strong>
+  <%= @user.receive_marketing %>
+</p>
+
+<p>
+  <strong>Receive articles:</strong>
+  <%= @user.receive_articles %>
+</p>
+
+<p>
+  <strong>Receive digest:</strong>
+  <%= @user.receive_digest %>
+</p>
+
+<h6>Tokens</h6>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nonce</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tokens.each do |token| %>
+      <tr>
+        <td><%= token.nonce %></td>
+        <td><%= link_to 'Destroy', users_destroy_token_path(token.id), method: :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Generate New Token', users_generate_token_path(@user), method: :post %> |
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

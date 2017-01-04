@@ -1,0 +1,34 @@
+<div class="col-sm-offset-3 col-sm-6 panel panel-default">
+
+<%= form_tag '/email_setting', method: 'post' do %>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <%= email_field_tag :email, nil, :placeholder =>'Enter your email address', :class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label for="nonce">Nonce</label>
+    <%= text_field_tag :nonce, nil, :placeholder => "Enter an associated nonce", :class => 'form-control'  %>
+  </div>
+  <div class="form-group form-check">
+    <%= check_box_tag :receive_marketing %>
+    Receive Marketing
+  </div>
+  <div class="form-group form-check">
+    <%= check_box_tag :receive_articles %>
+    Receive Articles
+  </div>
+  <div class="form-group form-check">
+    <%= check_box_tag :receive_digest %>
+    Receive Digest
+  </div>
+  <div>
+    <input id="all" name="all" type="checkbox" />
+    Toggle All
+  </div>
+  <br>
+  <div class="actions">
+    <%= submit_tag "Update", class: "btn btn-large btn-primary"%>
+  </div>
+  <br>
+<% end %>
+</div>
