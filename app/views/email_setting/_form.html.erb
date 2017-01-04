@@ -3,22 +3,25 @@
 <%= form_tag '/email_setting', method: 'post' do %>
   <div class="form-group">
     <label for="email">Email</label>
-    <%= email_field_tag :email, nil, :placeholder =>'Enter your email address', :class => 'form-control' %>
+    <%= email_field_tag :email, @email, :placeholder =>'Enter your email address', :class => 'form-control' %>
   </div>
   <div class="form-group">
     <label for="nonce">Nonce</label>
-    <%= text_field_tag :nonce, nil, :placeholder => "Enter an associated nonce", :class => 'form-control'  %>
+    <%= text_field_tag :token, @token, :placeholder => "Enter an associated token", :class => 'form-control'  %>
   </div>
   <div class="form-group form-check">
-    <%= check_box_tag :receive_marketing %>
+    <%= hidden_field_tag :receive_marketing, false %>
+    <%= check_box_tag :receive_marketing, nil, @receive_marketing %>
     Receive Marketing
   </div>
   <div class="form-group form-check">
-    <%= check_box_tag :receive_articles %>
+    <%= hidden_field_tag :receive_articles, false %>
+    <%= check_box_tag :receive_articles, nil, @receive_articles %>
     Receive Articles
   </div>
   <div class="form-group form-check">
-    <%= check_box_tag :receive_digest %>
+    <%= hidden_field_tag :receive_digest, false %>
+    <%= check_box_tag :receive_digest, nil, @receive_digest %>
     Receive Digest
   </div>
   <div>

@@ -4,12 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    session[:return_to] = request.url
     @users = User.all.order(:id)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    session[:return_to] = request.url
     @tokens = Token.where(user_id: @user.id)
   end
 
@@ -26,7 +28,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
   def generate_token
     @token = Token.generate(@user)
     respond_to do |format|
-      format.html { redirect_to @user, notice: 'Token was successfully created.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Token was successfully created.' }
       format.json { head :no_content }
     end
   end
@@ -75,7 +76,7 @@ class UsersController < ApplicationController
     @user = User.find(@token.user_id)
     @token.destroy
     respond_to do |format|
-      format.html { redirect_to @user, notice: 'Token was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Token was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
